@@ -1,30 +1,36 @@
 import React from 'react';
-import {FlatList, View} from 'react-native';
-import {ActivityIndicator, Colors, Subheading, Title} from 'react-native-paper';
+import {FlatList} from 'react-native';
+import {ActivityIndicator, Colors} from 'react-native-paper';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useQuery} from 'react-query';
 import moviesCinemaWorld from '../../api/queries/moviesCinemaWorld';
 import moviesFilmWorld from '../../api/queries/moviesFilmWorld';
+import isCheapestPrice from '../../helpers/movie/isCheapestPrice';
 import MovieCard, {Movie, MovieApi} from '../molecules/MovieCard';
 
 export default () => {
-  const {data: dataMoviesCinemaWorld, error: errorMoviesCinemaWorld} = useQuery(
-    'moviesCinemaWorld',
-    moviesCinemaWorld,
-    {
-      retry: 5,
-    },
-  );
+  const {
+    data: dataMoviesCinemaWorld,
+    error: errorMoviesCinemaWorld,
+    isLoading: cinLoading,
+  } = useQuery('moviesCinemaWorld', moviesCinemaWorld, {
+    retry: 5,
+  });
 
-  const {data: dataMoviesFilmWorld, error: errorMoviesFilmWorld} = useQuery(
-    'moviesFilmWorld',
-    moviesFilmWorld,
-    {
-      retry: 5,
-    },
-  );
+  const {
+    data: dataMoviesFilmWorld,
+    error: errorMoviesFilmWorld,
+    isLoading: filmLoading,
+  } = useQuery('moviesFilmWorld', moviesFilmWorld, {
+    retry: 5,
+  });
 
-  if (errorMoviesCinemaWorld || errorMoviesFilmWorld) {
+  if (
+    errorMoviesCinemaWorld ||
+    errorMoviesFilmWorld ||
+    cinLoading ||
+    filmLoading
+  ) {
     return <ActivityIndicator animating={true} color={Colors.red800} />;
   }
 
