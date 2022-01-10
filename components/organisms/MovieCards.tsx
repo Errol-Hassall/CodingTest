@@ -1,11 +1,10 @@
 import React from 'react';
-import {FlatList} from 'react-native';
+import {FlatList, StyleSheet} from 'react-native';
 import {ActivityIndicator, Colors} from 'react-native-paper';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useQuery} from 'react-query';
 import moviesCinemaWorld from '../../api/queries/moviesCinemaWorld';
 import moviesFilmWorld from '../../api/queries/moviesFilmWorld';
-import isCheapestPrice from '../../helpers/movie/isCheapestPrice';
 import MovieCard, {Movie, MovieApi} from '../molecules/MovieCard';
 
 export default () => {
@@ -60,8 +59,7 @@ export default () => {
   });
 
   return (
-    <SafeAreaView
-      style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+    <SafeAreaView style={[styles.view]}>
       <FlatList
         data={movieData}
         renderItem={({item}) => <MovieCard movie={item} />}
@@ -70,3 +68,11 @@ export default () => {
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  view: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
