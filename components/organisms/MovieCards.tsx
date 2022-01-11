@@ -68,6 +68,8 @@ export default () => {
         data={movieData}
         renderItem={renderItems}
         keyExtractor={keyExtractor}
+        maxToRenderPerBatch={5}
+        windowSize={5}
       />
     </SafeAreaView>
   );
