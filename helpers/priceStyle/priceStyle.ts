@@ -1,5 +1,9 @@
 import {StyleSheet} from 'react-native';
 
+/**
+ * Compares the first price to the second and determines if its cheaper or not
+ * to then return the correct styling for the first price either red or green
+ */
 export default (priceA: number, priceB: number) => {
   const styles = StyleSheet.create({
     cheap: {

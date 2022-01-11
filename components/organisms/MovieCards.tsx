@@ -13,7 +13,7 @@ export default () => {
     error: errorMoviesCinemaWorld,
     isLoading: cinLoading,
   } = useQuery('moviesCinemaWorld', moviesCinemaWorld, {
-    retry: 5,
+    retry: 5, // flakey api must retry 5 times
   });
 
   const {
@@ -21,7 +21,7 @@ export default () => {
     error: errorMoviesFilmWorld,
     isLoading: filmLoading,
   } = useQuery('moviesFilmWorld', moviesFilmWorld, {
-    retry: 5,
+    retry: 5, // flakey api must retry 5 times
   });
 
   const renderItems = useCallback(({item}) => <MovieCard movie={item} />, []);
@@ -37,18 +37,21 @@ export default () => {
     return <ActivityIndicator animating={true} color={Colors.red800} />;
   }
 
+  // extracts out the film world data
   const filmWorldData: MovieApi[] = dataMoviesFilmWorld?.data?.Movies.map(
     (movie: Movie) => {
       return movie;
     },
   );
 
+  // extracts out the cinema world data
   const cinemaWorldData: MovieApi[] = dataMoviesCinemaWorld?.data?.Movies.map(
     (movie: Movie) => {
       return movie;
     },
   );
 
+  // constructs the movie object used to render each list item
   const movieData: Movie[] = filmWorldData?.map((movie: MovieApi) => {
     const cinemaWorldMatch: MovieApi = cinemaWorldData?.find(
       // ID's does not match so must use Title should be improved

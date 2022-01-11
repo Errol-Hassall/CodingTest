@@ -4,6 +4,9 @@ import {Subheading, Title} from 'react-native-paper';
 import {Movie} from '../../components/molecules/MovieCard';
 import priceStyle from '../../helpers/priceStyle/priceStyle';
 
+/**
+ * The view that shows the details of a given movie
+ */
 export default (props: {route: {params: {movie: Movie}}}) => {
   const movie = props.route.params.movie;
 

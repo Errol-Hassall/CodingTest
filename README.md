@@ -17,6 +17,13 @@ or
 
 There are unit, component and view tests.
 
+## Development
+
+- Follows [atomic design](https://bradfrost.com/blog/post/atomic-web-design/) for component structure
+- All tests are located as close to the thing they are testing to encourage better practices and maintenance
+- Views contain the screens of the application
+- Components are all the sub elements of a view
+
 ## Improvements
 
 - Could add view tests with views that have API calls, this would be adding mocks around the api calls of React Query
