@@ -2,8 +2,8 @@ import React from 'react';
 import {QueryClient, QueryClientProvider} from 'react-query';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import Movies from './views/Movies';
-import Movie from './views/Movie';
+import Movies from './views/movies/MoviesView';
+import Movie from './views/movie/MovieView';
 import {RootStackParamList} from './views/navigationTypes';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();

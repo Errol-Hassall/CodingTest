@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Subheading, Title} from 'react-native-paper';
-import MovieCards from '../components/organisms/MovieCards';
+import MovieCards from '../../components/organisms/MovieCards';
 
 export default () => {
   return (

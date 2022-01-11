@@ -17,4 +17,5 @@ module.exports = {
       '|react-native-iphone-x-helper' +
       ')/)',
   ],
+  setupFiles: ['<rootDir>/jest/setup.js'],
 };

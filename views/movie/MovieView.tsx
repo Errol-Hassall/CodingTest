@@ -1,8 +1,8 @@
 import React from 'react';
 import {Image, StyleSheet, View} from 'react-native';
 import {Subheading, Title} from 'react-native-paper';
-import {Movie} from '../components/molecules/MovieCard';
-import priceStyle from '../helpers/priceStyle/priceStyle';
+import {Movie} from '../../components/molecules/MovieCard';
+import priceStyle from '../../helpers/priceStyle/priceStyle';
 
 export default (props: {route: {params: {movie: Movie}}}) => {
   const movie = props.route.params.movie;
@@ -11,7 +11,11 @@ export default (props: {route: {params: {movie: Movie}}}) => {
     <View style={[styles.main]}>
       <Title>{movie.Title}</Title>
 
-      <Image source={{uri: movie.Poster}} style={[styles.imageStyle]} />
+      <Image
+        testID="imgBackground"
+        source={{uri: movie.Poster}}
+        style={[styles.imageStyle]}
+      />
 
       <Subheading
         style={[

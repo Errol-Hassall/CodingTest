@@ -1,10 +1,11 @@
 import React from 'react';
 import {render} from '@testing-library/react-native';
-import MovieCard, {Movie} from './MovieCard';
 import {NavigationContainer} from '@react-navigation/native';
+import {Movie} from '../../components/molecules/MovieCard';
+import MovieView from './MovieView';
 
-describe('Movie Card', () => {
-  test('creates a movie card', async () => {
+describe('Movie detail screen', () => {
+  test('renders the movie detail screen', async () => {
     const movie: Movie = {
       Actors: 'Carrie Fisher, Mark Hamill, Adam Driver, Daisy Ridley',
       ID: 'cw2527338',
@@ -16,13 +17,14 @@ describe('Movie Card', () => {
       Type: 'movie',
     };
 
-    const {getByText} = render(
+    const {getByText, getByTestId} = render(
       <NavigationContainer>
-        <MovieCard movie={movie} />
+        <MovieView route={{params: {movie: movie}}} />
       </NavigationContainer>,
     );
 
     expect(getByText(movie.Title)).toBeTruthy();
+    expect(getByTestId('imgBackground')).toBeTruthy();
     expect(getByText(`Cinema World $${movie.PriceCinWorld}`)).toBeTruthy();
     expect(getByText(`Film World $${movie.PriceFilmWorld}`)).toBeTruthy();
   });
