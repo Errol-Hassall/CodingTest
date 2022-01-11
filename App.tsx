@@ -2,9 +2,11 @@ import React from 'react';
 import {QueryClient, QueryClientProvider} from 'react-query';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {Movies} from './views/Movies';
+import Movies from './views/Movies';
+import Movie from './views/Movie';
+import {RootStackParamList} from './views/navigationTypes';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const App = () => {
   const queryClient = new QueryClient();
@@ -12,8 +14,9 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Home" component={Movies} />
+        <Stack.Navigator initialRouteName="Movies">
+          <Stack.Screen name="Movies" component={Movies} />
+          <Stack.Screen name="Movie" component={Movie} />
         </Stack.Navigator>
       </NavigationContainer>
     </QueryClientProvider>

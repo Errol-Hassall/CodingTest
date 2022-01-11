@@ -1,6 +1,7 @@
 import React from 'react';
 import {Card, Subheading, Title} from 'react-native-paper';
-import {StyleSheet} from 'react-native';
+import priceStyle from '../../helpers/price/priceStyle';
+import {useNavigation} from '@react-navigation/native';
 
 export interface Movie {
   Actors: string;
@@ -24,13 +25,18 @@ export interface MovieApi {
 export default (props: {movie: Movie}) => {
   const {movie} = props;
 
-  const priceStyle = (priceA: number, priceB: number) => {
-    return priceA <= priceB ? styles.cheap : styles.expensive;
+  const navigation = useNavigation();
+
+  const navigateToDetailView = () => {
+    // issue with typing here, complains it should be never, when it should be a string
+    navigation.navigate('Movie', {
+      movie,
+    });
   };
 
   return (
     <>
-      <Card>
+      <Card onPress={() => navigateToDetailView()}>
         <Card.Content>
           <Card.Cover source={{uri: movie.Poster}} />
           <Title>{movie.Title}</Title>
@@ -47,20 +53,3 @@ export default (props: {movie: Movie}) => {
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  cheap: {
-    backgroundColor: 'green',
-    paddingTop: 4,
-    paddingBottom: 4,
-    paddingLeft: 4,
-    paddingRight: 4,
-  },
-  expensive: {
-    backgroundColor: 'red',
-    paddingTop: 4,
-    paddingBottom: 4,
-    paddingLeft: 4,
-    paddingRight: 4,
-  },
-});

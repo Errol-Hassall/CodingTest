@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {FlatList, StyleSheet} from 'react-native';
 import {ActivityIndicator, Colors} from 'react-native-paper';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -24,6 +24,10 @@ export default () => {
     retry: 5,
   });
 
+  const renderItems = useCallback(({item}) => <MovieCard movie={item} />, []);
+
+  const keyExtractor = useCallback(item => item.ID, []);
+
   if (
     errorMoviesCinemaWorld ||
     errorMoviesFilmWorld ||
@@ -47,7 +51,7 @@ export default () => {
 
   const movieData: Movie[] = filmWorldData?.map((movie: MovieApi) => {
     const cinemaWorldMatch: MovieApi = cinemaWorldData?.find(
-      // ID's does not match so must use Title
+      // ID's does not match so must use Title should be improved
       (m: MovieApi) => m.Title === movie.Title,
     ) as MovieApi;
 
@@ -62,8 +66,8 @@ export default () => {
     <SafeAreaView style={[styles.view]}>
       <FlatList
         data={movieData}
-        renderItem={({item}) => <MovieCard movie={item} />}
-        keyExtractor={movie => movie.ID}
+        renderItem={renderItems}
+        keyExtractor={keyExtractor}
       />
     </SafeAreaView>
   );
