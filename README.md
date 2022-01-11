@@ -5,6 +5,7 @@
 
 - install react native
 - install android studio and java
+- install node from the version listed in `.nvmrc` or install nvm
 - install dependencies `npm i`
 - install pods `npx pod-install ios`
 - run metro `npm start`
