@@ -12,3 +12,14 @@
 - run ios `npm run ios`
 or
 - run android `npm run android`
+
+## Testing
+
+There are unit, component and view tests.
+
+## Improvements
+
+- Could add view tests with views that have API calls, this would be adding mocks around the api calls of React Query
+- Extract out some types into a general types file or folder
+- Add relative imports
+- Add storybook
