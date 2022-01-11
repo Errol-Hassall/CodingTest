@@ -1,6 +1,6 @@
 import React from 'react';
 import {Card, Subheading, Title} from 'react-native-paper';
-import priceStyle from '../../helpers/price/priceStyle';
+import priceStyle from '../../helpers/priceStyle/priceStyle';
 import {useNavigation} from '@react-navigation/native';
 
 export interface Movie {
